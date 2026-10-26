@@ -34,10 +34,17 @@
                     <tr>
                         <td>@item.Title</td>
                         <td style="display: flex; gap: 10px;">
-                            <a asp-action="DistrictEdit" asp-route-id="@item.Id" class="btn btn-outline" style="padding: 5px 10px; font-size: 13px;">Изменить</a>
-                            <form asp-action="DistrictDelete" asp-route-id="@item.Id" method="post" style="margin: 0;" onsubmit="return confirm('Удалить район?');">
-                                <button type="submit" class="btn btn-danger" style="padding: 5px 10px; font-size: 13px;">Удалить</button>
-                            </form>
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                <a asp-action="DistrictEdit" asp-route-id="@item.Id" class="btn btn-outline" style="padding: 0 15px; font-size: 13px; height: 32px; display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; margin: 0;">
+                                    Изменить
+                                </a>
+
+                                <form asp-action="DistrictDelete" asp-route-id="@item.Id" method="post" style="margin: 0; display: flex;" onsubmit="return confirm('Удалить район?');">
+                                    <button type="submit" class="btn btn-danger" style="padding: 0 15px; font-size: 13px; height: 32px; display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; margin: 0;">
+                                        Удалить
+                                    </button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 }
@@ -73,10 +80,17 @@
                         <td>@item.Title</td>
                         <td>@(item.District?.Title ?? "Не указан")</td>
                         <td style="display: flex; gap: 10px;">
-                            <a asp-action="ShawarmaEdit" asp-route-id="@item.Id" class="btn btn-outline" style="padding: 5px 10px; font-size: 13px;">Изменить</a>
-                            <form asp-action="ShawarmaDelete" asp-route-id="@item.Id" method="post" style="margin: 0;" onsubmit="return confirm('Удалить шаурмечную?');">
-                                <button type="submit" class="btn btn-danger" style="padding: 5px 10px; font-size: 13px;">Удалить</button>
-                            </form>
+                            <div style="display: flex; gap: 10px; align-items: center;">
+                                <a asp-action="ShawarmaEdit" asp-route-id="@item.Id" class="btn btn-outline" style="padding: 0 15px; font-size: 13px; height: 32px; display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; margin: 0;">
+                                    Изменить
+                                </a>
+    
+                                <form asp-action="ShawarmaDelete" asp-route-id="@item.Id" method="post" style="margin: 0; display: flex;" onsubmit="return confirm('Удалить шаурмечную?');">
+                                    <button type="submit" class="btn btn-danger" style="padding: 0 15px; font-size: 13px; height: 32px; display: inline-flex; align-items: center; justify-content: center; box-sizing: border-box; margin: 0;">
+                                        Удалить
+                                    </button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                 }

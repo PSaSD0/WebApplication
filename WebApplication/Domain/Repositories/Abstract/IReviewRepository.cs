@@ -7,5 +7,6 @@ namespace WebApplication.Domain.Repositories.Abstract
         Task<IEnumerable<Review>> GetReviewsByShawarmaIdAsync(int shawarmaId);
         Task<IEnumerable<Review>> GetReviewsByUserIdAsync(string userId);
         Task SaveReviewAsync(Review entity);
+        Task DeleteReviewAsync(int id);
     }
 }

@@ -55,5 +55,14 @@ namespace WebApplication.Controllers
             await _dataManager.Reviews.SaveReviewAsync(review);
             return RedirectToAction("Show", new { id = model.ShawarmaPlaceId });
         }
+
+        [HttpPost]
+        [Authorize(Roles = "admin")]
+        public async Task<IActionResult> DeleteReview(int id, int shawarmaPlaceId)
+        {
+            await _dataManager.Reviews.DeleteReviewAsync(id);
+
+            return RedirectToAction("Show", new { id = shawarmaPlaceId });
+        }
     }
 }

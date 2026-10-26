@@ -20,5 +20,10 @@ namespace WebApplication.Domain.Repositories.EntityFramework
             _context.Entry(entity).State = entity.Id == default ? EntityState.Added : EntityState.Modified;
             await _context.SaveChangesAsync();
         }
+        public async Task DeleteReviewAsync(int id)
+        {
+            _context.Entry(new Review { Id = id }).State = EntityState.Deleted;
+            await _context.SaveChangesAsync();
+        }
     }
 }
