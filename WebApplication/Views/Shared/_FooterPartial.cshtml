@@ -1,0 +1,11 @@
+﻿@inject IConfiguration config
+@{
+    AppConfig? appConfig = config.GetSection("Project").Get<AppConfig>();
+}
+
+<footer>
+    <div class="container">
+        <p>&copy; @DateTime.Now.Year - @appConfig?.company.CompanyName. Все права защищены.</p>
+        <p>Сделано с любовью к шаурме.</p>
+    </div>
+</footer>

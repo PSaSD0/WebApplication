@@ -1,0 +1,40 @@
+﻿@model ShawarmaDto
+@{
+    ViewBag.Title = Model.Title;
+}
+
+<a asp-action="Index" style="text-decoration: none; color: #666; display: inline-block; margin-bottom: 20px;">&larr; Назад к списку</a>
+
+<div class="show-container">
+    <div class="show-image">
+        @if (!string.IsNullOrEmpty(Model.Photo))
+        {
+            <img src="~/img/@Model.Photo" alt="@Model.Title" />
+        }
+        else
+        {
+            <div style="background: #eee; height: 300px; display: flex; align-items: center; justify-content: center; border-radius: 12px; color: #999;">
+                Фото отсутствует
+            </div>
+        }
+    </div>
+
+    <div class="show-info">
+        <h2>@Model.Title</h2>
+
+        <div style="margin-bottom: 20px;">
+            @if (!string.IsNullOrEmpty(Model.DistrictName))
+            {
+                <span class="badge">Район: @Model.DistrictName</span>
+            }
+            <span class="badge" style="background-color: #e67e22; margin-left: 10px;">Оценка: @Model.Rating</span>
+        </div>
+
+        <p style="font-size: 18px; font-weight: 500; color: #555;">@Model.ShortDescription</p>
+
+        <div class="description-box">
+            <h3 style="margin-bottom: 15px; color: #2c3e50;">Подробный отзыв:</h3>
+            @Html.Raw(Model.Description)
+        </div>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+﻿@inject IConfiguration config
+@{
+    AppConfig? appConfig = config.GetSection("Project").Get<AppConfig>();
+}
+<header>
+    <div class="container header-inner">
+        <h1>
+            <a asp-controller="Home" asp-action="Index">@appConfig?.company.CompanyName</a>
+        </h1>
+        @await Component.InvokeAsync("Menu")
+    </div>
+</header>

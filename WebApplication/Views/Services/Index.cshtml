@@ -1,0 +1,45 @@
+﻿@model IEnumerable<ShawarmaDto>
+@{
+    ViewBag.Title = "Все шаурмечные";
+}
+
+<h2>Лучшие шаурмечные города</h2>
+
+@if (!Model.Any())
+{
+    <p>Пока нет добавленных шаурмечных. Зайдите в админку, чтобы добавить первую!</p>
+}
+else
+{
+    <div class="grid">
+        @foreach (var item in Model)
+        {
+            <div class="card">
+                @if (!string.IsNullOrEmpty(item.Photo))
+                {
+                    <img src="~/img/@item.Photo" class="card-img" alt="@item.Title" />
+                }
+                else
+                {
+                    <div class="card-img" style="display:flex; align-items:center; justify-content:center; color:#999;">
+                        Нет фото
+                    </div>
+                }
+                <div class="card-body">
+                    @if (!string.IsNullOrEmpty(item.DistrictName))
+                    {
+                        <span class="badge">Район: @item.DistrictName</span>
+                    }
+                    <h3 class="card-title">
+                        <a asp-action="Show" asp-route-id="@item.Id">@item.Title</a>
+                    </h3>
+                    <p class="card-text">@item.ShortDescription</p>
+                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
+                        <span style="font-weight: bold; color: #e67e22;">Оценка: @item.Rating</span>
+                        <a asp-action="Show" asp-route-id="@item.Id" class="btn" style="padding: 5px 15px; font-size: 14px;">Читать</a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

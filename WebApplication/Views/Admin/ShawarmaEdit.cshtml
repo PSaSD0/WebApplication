@@ -1,0 +1,61 @@
+﻿@model ShawarmaPlace
+@{
+    var districts = ViewBag.Districts as IEnumerable<District>;
+}
+<h2>@(Model.Id == 0 ? "Добавить шаурмечную" : "Редактировать шаурмечную")</h2>
+
+<form asp-action="ShawarmaEdit" method="post" enctype="multipart/form-data" style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="DateCreated" />
+
+    <div class="form-group">
+        <label asp-for="Title">Название заведения</label>
+        <input asp-for="Title" class="form-control" />
+        <span asp-validation-for="Title" style="color: red; font-size: 14px;"></span>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="DistrictId">Район</label>
+        <select asp-for="DistrictId" class="form-control">
+            <option value="">Выберите район</option>
+            @if (districts != null)
+            {
+                foreach (var d in districts)
+                {
+                    <option value="@d.Id">@d.Title</option>
+                }
+            }
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Rating">Оценка</label>
+        <select asp-for="Rating" class="form-control" asp-items="Html.GetEnumSelectList<WebApplication.Domain.Enums.RatingEnum>()"></select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ShortDescription">Краткое описание</label>
+        <input asp-for="ShortDescription" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description">Полный текст отзыва (можно HTML)</label>
+        <textarea asp-for="Description" class="form-control" rows="6"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label>Фото (титульная картинка)</label>
+        <input type="file" name="titleImage" class="form-control" style="padding: 10px; border: 1px dashed #ccc;" />
+        @if (!string.IsNullOrEmpty(Model.Photo))
+        {
+            <div style="margin-top: 10px;">
+                <img src="~/img/@Model.Photo" width="150" style="border-radius: 8px;" />
+            </div>
+        }
+    </div>
+
+    <div style="margin-top: 20px;">
+        <button type="submit" class="btn">Сохранить</button>
+        <a asp-action="Index" class="btn btn-outline" style="margin-left: 10px;">Отмена</a>
+    </div>
+</form>

@@ -1,0 +1,30 @@
+﻿@model LoginViewModel
+@{
+    ViewBag.Title = "Вход в панель администратора";
+}
+
+<div style="max-width: 400px; margin: 50px auto; background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+    <h2 style="text-align: center; margin-bottom: 30px;">Вход в систему</h2>
+
+    <form asp-action="Login" method="post">
+        <div asp-validation-summary="All" style="color: #e74c3c; margin-bottom: 15px; font-size: 14px;"></div>
+        <input type="hidden" name="returnUrl" value="@ViewBag.ReturnUrl" />
+
+        <div class="form-group">
+            <label asp-for="UserName"></label>
+            <input asp-for="UserName" class="form-control" placeholder="Введите логин" />
+        </div>
+
+        <div class="form-group">
+            <label asp-for="Password"></label>
+            <input asp-for="Password" class="form-control" placeholder="Введите пароль" />
+        </div>
+
+        <button type="submit" class="btn" style="width: 100%; font-size: 16px;">Войти</button>
+
+        <div style="text-align: center;">
+            <span style="color: #666;">Еще нет аккаунта?</span>
+            <a asp-action="Register" style="color: var(--primary-color); text-decoration: none;">Зарегистрироваться</a>
+        </div>
+    </form>
+</div>

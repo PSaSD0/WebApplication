@@ -1,0 +1,37 @@
+﻿@model IEnumerable<ShawarmaDto>
+
+<nav>
+    <ul>
+        <li class="dropdown">
+            <a asp-controller="Services" asp-action="Index" style="cursor: pointer;">Шаурмечные ▾</a>
+            <ul class="dropdown-content">
+                @if (Model.Any())
+                {
+                    @foreach (var item in Model)
+                    {
+                        <li><a asp-controller="Services" asp-action="Show" asp-route-id="@item.Id">@item.Title</a></li>
+                    }
+                }
+                else
+                {
+                    <li><a asp-controller="Services" asp-action="Index">Добавить первую</a></li>
+                }
+            </ul>
+        </li>
+
+        @if (User.Identity?.IsAuthenticated == true)
+        {
+            <li><span style="color: var(--primary-color); font-weight: bold;">@User.Identity.Name</span></li>
+            <li>
+                <form asp-controller="Account" asp-action="Logout" method="post" style="margin:0;">
+                    <button type="submit" class="btn btn-outline" style="padding: 5px 15px; font-size: 14px;">Выйти</button>
+                </form>
+            </li>
+        }
+        else
+        {
+            <li><a asp-controller="Account" asp-action="Register" class="btn btn-outline" style="padding: 5px 15px; font-size: 14px;">Регистрация</a></li>
+            <li><a asp-controller="Account" asp-action="Login" class="btn" style="padding: 5px 15px; font-size: 14px;">Войти</a></li>
+        }
+    </ul>
+</nav>
