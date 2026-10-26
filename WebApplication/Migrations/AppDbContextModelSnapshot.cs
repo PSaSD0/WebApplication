@@ -46,7 +46,7 @@ namespace WebApplication.Migrations
                         new
                         {
                             Id = "DA36513F-6393-43B8-A1E1-5CDF3D8EB6BF",
-                            ConcurrencyStamp = "d221ea46-3375-4f98-8992-3525b9fe825d",
+                            ConcurrencyStamp = "1cde5525-e93b-4030-bf3a-c4ebd1a03f25",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });
@@ -143,13 +143,13 @@ namespace WebApplication.Migrations
                         {
                             Id = "FA2325ED-7786-447A-BA83-93C89FE17D93",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "7896ff06-8357-486e-aa68-ec281a9df31a",
+                            ConcurrencyStamp = "9ac67e8c-1ea7-451e-88dd-691c71610bdb",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEB/+4Iu1pkffUiSeWwkfiHrwgWcEZNW3S0P3cogGbNvpTBAqcCYV+KV4+6M+cayMrA==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEBNFAe8/tnrXhbOdjuBttT///JfGuz1xFUzyV3w4JoxtWvHs+AWgS4P8hr/MEVallw==",
                             PhoneNumberConfirmed = true,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -261,6 +261,35 @@ namespace WebApplication.Migrations
                     b.ToTable("Districts");
                 });
 
+            modelBuilder.Entity("WebApplication.Domain.Entities.Review", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("DateCreated")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("ShawarmaPlaceId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<string>("Text")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ShawarmaPlaceId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Reviews");
+                });
+
             modelBuilder.Entity("WebApplication.Domain.Entities.ShawarmaPlace", b =>
                 {
                     b.Property<int>("Id")
@@ -349,6 +378,23 @@ namespace WebApplication.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("WebApplication.Domain.Entities.Review", b =>
+                {
+                    b.HasOne("WebApplication.Domain.Entities.ShawarmaPlace", "ShawarmaPlace")
+                        .WithMany("Reviews")
+                        .HasForeignKey("ShawarmaPlaceId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("ShawarmaPlace");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("WebApplication.Domain.Entities.ShawarmaPlace", b =>
                 {
                     b.HasOne("WebApplication.Domain.Entities.District", "District")
@@ -361,6 +407,11 @@ namespace WebApplication.Migrations
             modelBuilder.Entity("WebApplication.Domain.Entities.District", b =>
                 {
                     b.Navigation("ShawarmaPlaces");
+                });
+
+            modelBuilder.Entity("WebApplication.Domain.Entities.ShawarmaPlace", b =>
+                {
+                    b.Navigation("Reviews");
                 });
 #pragma warning restore 612, 618
         }

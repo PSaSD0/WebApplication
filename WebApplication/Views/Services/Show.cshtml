@@ -38,3 +38,56 @@
         </div>
     </div>
 </div>
+
+@* ... ваш существующий код с картинкой и описанием ... *@
+
+<hr style="margin: 40px 0; border: 0; border-top: 1px solid #eee;" />
+
+<h3>Отзывы посетителей</h3>
+
+@* Вывод существующих отзывов *@
+@{
+    var reviews = ViewBag.Reviews as IEnumerable<WebApplication.Domain.Entities.Review>;
+}
+
+@if (reviews != null && reviews.Any())
+{
+    <div style="margin-top: 20px;">
+        @foreach (var review in reviews)
+        {
+            <div style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.05); margin-bottom: 15px;">
+                <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                    <strong style="color: var(--primary-color);">👤 @review.User?.UserName</strong>
+                    <span style="color: #999; font-size: 14px;">@review.DateCreated.ToString("dd.MM.yyyy HH:mm")</span>
+                </div>
+                <p>@review.Text</p>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <p style="color: #666; margin-top: 15px;">Отзывов пока нет. Будьте первым!</p>
+}
+
+@* Форма добавления отзыва *@
+<div style="margin-top: 30px; background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+    @if (User.Identity?.IsAuthenticated == true)
+    {
+        <h4 style="margin-bottom: 15px;">Оставить отзыв</h4>
+        <form asp-action="AddReview" method="post">
+            <input type="hidden" name="ShawarmaPlaceId" value="@Model.Id" />
+            <div class="form-group">
+                <textarea name="Text" class="form-control" rows="4" placeholder="Поделитесь впечатлениями о шаурме..." required></textarea>
+            </div>
+            <button type="submit" class="btn">Отправить отзыв</button>
+        </form>
+    }
+    else
+    {
+        <p style="text-align: center; margin: 0;">
+            <a asp-controller="Account" asp-action="Login" style="color: var(--primary-color); font-weight: bold;">Войдите</a> или
+            <a asp-controller="Account" asp-action="Register" style="color: var(--primary-color); font-weight: bold;">зарегистрируйтесь</a>, чтобы оставить отзыв.
+        </p>
+    }
+</div>

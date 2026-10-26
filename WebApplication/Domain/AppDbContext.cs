@@ -9,6 +9,7 @@ namespace WebApplication.Domain
     {
         public DbSet<District> Districts { get; set; } = null!;
         public DbSet<ShawarmaPlace> ShawarmaPlaces { get; set; } = null!;
+        public DbSet<Review> Reviews { get; set; } = null!;
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
 

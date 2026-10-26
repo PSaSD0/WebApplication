@@ -220,5 +220,6 @@ E:\дз разные\C#\WebApplication\WebApplication\obj\Debug\net10.0\refint\W
 E:\дз разные\C#\WebApplication\WebApplication\obj\Debug\net10.0\WebApplication.pdb
 E:\дз разные\C#\WebApplication\WebApplication\obj\Debug\net10.0\WebApplication.genruntimeconfig.cache
 E:\дз разные\C#\WebApplication\WebApplication\obj\Debug\net10.0\ref\WebApplication.dll
-E:\дз разные\C#\WebApplication\WebApplication\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
 E:\дз разные\C#\WebApplication\WebApplication\obj\Debug\net10.0\compressed\gbtc5p17k1-{0}-6oti8fjq5u-6oti8fjq5u.gz
+E:\дз разные\C#\WebApplication\WebApplication\obj\Debug\net10.0\WebApplication.sourcelink.json
+E:\дз разные\C#\WebApplication\WebApplication\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt

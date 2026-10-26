@@ -21,7 +21,11 @@
 
         @if (User.Identity?.IsAuthenticated == true)
         {
-            <li><span style="color: var(--primary-color); font-weight: bold;">@User.Identity.Name</span></li>
+            <li>
+                <a asp-controller="Account" asp-action="Profile" style="color: var(--primary-color); font-weight: bold;">
+                    Мой профиль (@User.Identity.Name)
+                </a>
+            </li>
             <li>
                 <form asp-controller="Account" asp-action="Logout" method="post" style="margin:0;">
                     <button type="submit" class="btn btn-outline" style="padding: 5px 15px; font-size: 14px;">Выйти</button>

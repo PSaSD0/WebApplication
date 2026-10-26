@@ -23,5 +23,7 @@ namespace WebApplication.Domain.Entities
 
         [Display(Name = "Оценка")]
         public RatingEnum Rating { get; set; }
+
+        public ICollection<Review> Reviews { get; set; } = new List<Review>();
     }
 }

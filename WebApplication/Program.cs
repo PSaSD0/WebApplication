@@ -37,6 +37,7 @@ builder.Services.ConfigureApplicationCookie(options =>
 // Регистрация репозиториев (добавим позже)
 builder.Services.AddTransient<IDistrictRepository, EFDistrictRepository>();
 builder.Services.AddTransient<IShawarmaPlaceRepository, EFShawarmaPlaceRepository>();
+builder.Services.AddTransient<IReviewRepository, EFReviewRepository>();
 builder.Services.AddTransient<DataManager>();
 
 builder.Services.AddControllersWithViews();
