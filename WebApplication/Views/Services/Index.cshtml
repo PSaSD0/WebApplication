@@ -34,8 +34,11 @@ else
                         <a asp-action="Show" asp-route-id="@item.Id">@item.Title</a>
                     </h3>
                     <p class="card-text">@item.ShortDescription</p>
+                    <p style="font-size: 14px; color: #888; margin-bottom: 15px;">@item.Address</p>
                     <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
-                        <span style="font-weight: bold; color: #e67e22;">Оценка: @item.Rating</span>
+                        <span style="font-weight: bold; color: #e67e22;">
+                            Оценка: @(item.AverageRating > 0 ? item.AverageRating.ToString("0.0") : "Нет")
+                        </span>                        
                         <a asp-action="Show" asp-route-id="@item.Id" class="btn" style="padding: 5px 15px; font-size: 14px;">Читать</a>
                     </div>
                 </div>

@@ -46,6 +46,14 @@ namespace WebApplication.Domain
                 RoleId = roleAdminId,
                 UserId = userAdminId
             });
+
+            builder.Entity<District>().HasData(
+                new District { Id = 1, Title = "Ленинский район", DateCreated = new DateTime(2024, 1, 1) },
+                new District { Id = 2, Title = "Октябрьский район", DateCreated = new DateTime(2024, 1, 1) },
+                new District { Id = 3, Title = "Первомайский район", DateCreated = new DateTime(2024, 1, 1) },
+                new District { Id = 4, Title = "Индустриальный район", DateCreated = new DateTime(2024, 1, 1) },
+                new District { Id = 5, Title = "Устиновский район", DateCreated = new DateTime(2024, 1, 1) }
+            );
         }
     }
 }

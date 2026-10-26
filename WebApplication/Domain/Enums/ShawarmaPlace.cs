@@ -14,15 +14,12 @@ namespace WebApplication.Domain.Entities
         [MaxLength(3000)]
         public string? ShortDescription { get; set; }
 
-        [Display(Name = "Полный текст отзыва")]
-        [MaxLength(100000)]
-        public string? Description { get; set; }
+        [Display(Name = "Адрес")]
+        [MaxLength(200)]
+        public string? Address { get; set; }
 
         [Display(Name = "Фото шаурмы")]
         public string? Photo { get; set; }
-
-        [Display(Name = "Оценка")]
-        public RatingEnum Rating { get; set; }
 
         public ICollection<Review> Reviews { get; set; } = new List<Review>();
     }

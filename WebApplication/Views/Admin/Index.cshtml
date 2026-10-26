@@ -12,6 +12,13 @@
         <a asp-action="DistrictEdit" asp-route-id="0" class="btn">+ Добавить район</a>
     </div>
 
+    @if (TempData["ErrorMessage"] != null)
+    {
+        <div style="background-color: #f8d7da; color: #721c24; padding: 15px; border-radius: 8px; margin-bottom: 20px; font-weight: bold;">
+            @TempData["ErrorMessage"]
+        </div>
+    }
+
     @if (districts != null && districts.Any())
     {
         <table class="admin-table">
@@ -45,7 +52,7 @@
 
 <div>
     <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
-        <h3>Шаурмечные (Отзывы)</h3>
+        <h3>Шаурмечные</h3>
         <a asp-action="ShawarmaEdit" asp-route-id="0" class="btn">+ Добавить шаурмечную</a>
     </div>
 
@@ -56,7 +63,6 @@
                 <tr>
                     <th>Название</th>
                     <th>Район</th>
-                    <th>Оценка</th>
                     <th>Действия</th>
                 </tr>
             </thead>
@@ -66,7 +72,6 @@
                     <tr>
                         <td>@item.Title</td>
                         <td>@(item.District?.Title ?? "Не указан")</td>
-                        <td>@item.Rating</td>
                         <td style="display: flex; gap: 10px;">
                             <a asp-action="ShawarmaEdit" asp-route-id="@item.Id" class="btn btn-outline" style="padding: 5px 10px; font-size: 13px;">Изменить</a>
                             <form asp-action="ShawarmaDelete" asp-route-id="@item.Id" method="post" style="margin: 0;" onsubmit="return confirm('Удалить шаурмечную?');">

@@ -27,5 +27,10 @@ namespace WebApplication.Domain.Repositories.EntityFramework
             _context.Entry(new District { Id = id }).State = EntityState.Deleted;
             await _context.SaveChangesAsync();
         }
+
+        public async Task<bool> HasShawarmaPlacesAsync(int districtId)
+        {
+            return await _context.ShawarmaPlaces.AnyAsync(x => x.DistrictId == districtId);
+        }
     }
 }

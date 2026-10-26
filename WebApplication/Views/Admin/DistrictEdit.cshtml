@@ -1,0 +1,23 @@
+﻿@model District
+@{
+    ViewBag.Title = Model.Id == 0 ? "Добавить район" : "Редактировать район";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<form asp-action="DistrictEdit" method="post" style="background: white; padding: 30px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); max-width: 500px;">
+
+    <input type="hidden" asp-for="Id" />
+    <input type="hidden" asp-for="DateCreated" />
+
+    <div class="form-group">
+        <label asp-for="Title">Название района</label>
+        <input asp-for="Title" class="form-control" placeholder="Например: Ленинский район" />
+        <span asp-validation-for="Title" style="color: #e74c3c; font-size: 14px;"></span>
+    </div>
+
+    <div style="margin-top: 20px;">
+        <button type="submit" class="btn">Сохранить</button>
+        <a asp-action="Index" class="btn btn-outline" style="margin-left: 10px;">Отмена</a>
+    </div>
+</form>

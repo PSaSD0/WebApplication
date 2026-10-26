@@ -11,10 +11,10 @@ namespace WebApplication.Domain.Repositories.EntityFramework
         public EFShawarmaPlaceRepository(AppDbContext context) { _context = context; }
 
         public async Task<IEnumerable<ShawarmaPlace>> GetShawarmaPlacesAsync()
-            => await _context.ShawarmaPlaces.Include(x => x.District).ToListAsync();
+            => await _context.ShawarmaPlaces.Include(x => x.District).Include(x => x.Reviews).ToListAsync();
 
         public async Task<ShawarmaPlace?> GetShawarmaPlaceByIdAsync(int id)
-            => await _context.ShawarmaPlaces.Include(x => x.District).FirstOrDefaultAsync(x => x.Id == id);
+            => await _context.ShawarmaPlaces.Include(x => x.District).Include(x => x.Reviews).FirstOrDefaultAsync(x => x.Id == id);
 
         public async Task SaveShawarmaPlaceAsync(ShawarmaPlace entity)
         {

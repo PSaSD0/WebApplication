@@ -7,15 +7,19 @@ namespace WebApplication.Infrastructure
     {
         public static ShawarmaDto ShawarmaToDto(ShawarmaPlace entity)
         {
+            double avgRating = entity.Reviews != null && entity.Reviews.Any()
+                ? entity.Reviews.Average(r => r.Rating)
+                : 0;
+
             return new ShawarmaDto
             {
                 Id = entity.Id,
                 Title = entity.Title,
                 ShortDescription = entity.ShortDescription,
-                Description = entity.Description,
+                Address = entity.Address,
                 Photo = entity.Photo,
                 DistrictName = entity.District?.Title,
-                Rating = entity.Rating.ToString()
+                AverageRating = Math.Round(avgRating, 1)
             };
         }
 

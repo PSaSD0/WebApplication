@@ -36,12 +36,11 @@ namespace WebApplication.Controllers
         }
 
         [HttpPost]
-        [Authorize] // Только авторизованные могут писать
+        [Authorize]
         public async Task<IActionResult> AddReview(AddReviewViewModel model)
         {
             if (!ModelState.IsValid)
             {
-                // Если ошибка, возвращаем на страницу шаурмечной
                 return RedirectToAction("Show", new { id = model.ShawarmaPlaceId });
             }
 
@@ -49,6 +48,7 @@ namespace WebApplication.Controllers
             {
                 ShawarmaPlaceId = model.ShawarmaPlaceId,
                 Text = model.Text,
+                Rating = model.Rating,
                 UserId = _userManager.GetUserId(User)
             };
 

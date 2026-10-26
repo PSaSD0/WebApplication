@@ -12,6 +12,11 @@ namespace WebApplication.Domain.Entities
         [MaxLength(2000)]
         public string? Text { get; set; }
 
+        [Required(ErrorMessage = "Поставьте оценку")]
+        [Range(1, 5, ErrorMessage = "Оценка должна быть от 1 до 5")]
+        [Display(Name = "Оценка (1-5)")]
+        public int Rating { get; set; }
+
         public DateTime DateCreated { get; set; } = DateTime.UtcNow;
 
         // Связь с пользователем

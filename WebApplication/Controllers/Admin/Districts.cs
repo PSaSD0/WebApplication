@@ -22,6 +22,14 @@ namespace WebApplication.Controllers.Admin
         [HttpPost]
         public async Task<IActionResult> DistrictDelete(int id)
         {
+            bool hasPlaces = await _dataManager.Districts.HasShawarmaPlacesAsync(id);
+
+            if (hasPlaces)
+            {
+                TempData["ErrorMessage"] = "Нельзя удалить район, так как в нем есть шаурмечные! Сначала переназначьте их в другой район.";
+                return RedirectToAction("Index");
+            }
+
             await _dataManager.Districts.DeleteDistrictAsync(id);
             return RedirectToAction("Index");
         }

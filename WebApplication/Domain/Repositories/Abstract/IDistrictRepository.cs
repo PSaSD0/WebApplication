@@ -8,5 +8,6 @@ namespace WebApplication.Domain.Repositories.Abstract
         Task<District?> GetDistrictByIdAsync(int id);
         Task SaveDistrictAsync(District entity);
         Task DeleteDistrictAsync(int id);
+        Task<bool> HasShawarmaPlacesAsync(int districtId);
     }
 }

@@ -46,7 +46,7 @@ namespace WebApplication.Migrations
                         new
                         {
                             Id = "DA36513F-6393-43B8-A1E1-5CDF3D8EB6BF",
-                            ConcurrencyStamp = "1cde5525-e93b-4030-bf3a-c4ebd1a03f25",
+                            ConcurrencyStamp = "4e5767b1-2040-4e92-a388-a55bd01978c9",
                             Name = "admin",
                             NormalizedName = "ADMIN"
                         });
@@ -143,13 +143,13 @@ namespace WebApplication.Migrations
                         {
                             Id = "FA2325ED-7786-447A-BA83-93C89FE17D93",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "9ac67e8c-1ea7-451e-88dd-691c71610bdb",
+                            ConcurrencyStamp = "c467e324-794b-4b98-ac0c-c3ad51bb6d1c",
                             Email = "admin@admin.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@ADMIN.COM",
                             NormalizedUserName = "ADMIN",
-                            PasswordHash = "AQAAAAIAAYagAAAAEBNFAe8/tnrXhbOdjuBttT///JfGuz1xFUzyV3w4JoxtWvHs+AWgS4P8hr/MEVallw==",
+                            PasswordHash = "AQAAAAIAAYagAAAAEExL7ZUNETiYlO+3MDvjEYFa/PMdXkqL7G0xSd570yJG1422gfZJDEDk/KwW+5mKLA==",
                             PhoneNumberConfirmed = true,
                             SecurityStamp = "",
                             TwoFactorEnabled = false,
@@ -259,6 +259,38 @@ namespace WebApplication.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Districts");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DateCreated = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Ленинский район"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DateCreated = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Октябрьский район"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            DateCreated = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Первомайский район"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            DateCreated = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Индустриальный район"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            DateCreated = new DateTime(2024, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "Устиновский район"
+                        });
                 });
 
             modelBuilder.Entity("WebApplication.Domain.Entities.Review", b =>
@@ -269,6 +301,9 @@ namespace WebApplication.Migrations
 
                     b.Property<DateTime>("DateCreated")
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("ShawarmaPlaceId")
                         .HasColumnType("INTEGER");
@@ -296,11 +331,11 @@ namespace WebApplication.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER");
 
-                    b.Property<DateTime>("DateCreated")
+                    b.Property<string>("Address")
+                        .HasMaxLength(200)
                         .HasColumnType("TEXT");
 
-                    b.Property<string>("Description")
-                        .HasMaxLength(100000)
+                    b.Property<DateTime>("DateCreated")
                         .HasColumnType("TEXT");
 
                     b.Property<int?>("DistrictId")
@@ -308,9 +343,6 @@ namespace WebApplication.Migrations
 
                     b.Property<string>("Photo")
                         .HasColumnType("TEXT");
-
-                    b.Property<int>("Rating")
-                        .HasColumnType("INTEGER");
 
                     b.Property<string>("ShortDescription")
                         .HasMaxLength(3000)
